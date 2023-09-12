@@ -1,0 +1,12 @@
+{
+  "name": "webserver",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "startTheServer": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
