@@ -34,7 +34,7 @@ const cats = [
 ];
 
 const server = http.createServer(async (req, res) => {
-  const { url } = req;
+  const { url, method } = req;
 
   if (url === "/") {
     const imageUrlPattern = /{{imageUrl}}/g;

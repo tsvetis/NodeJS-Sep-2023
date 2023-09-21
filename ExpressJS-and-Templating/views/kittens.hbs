@@ -1,0 +1,15 @@
+{{#if kittens}}
+    {{#each kittens}}
+      {{>kitten}}
+    {{/each}}
+{{else}}
+ <p>There are no kittens!</p>
+{{/if}}
+
+<form method="post">
+ <label for="name">Name</label>
+ <input type="text" name="name" id="name">
+ <label for="age">Age</label>
+ <input type="number" name="age" id="age">
+ <input type="submit" value="Add Kitten" />
+</form>
