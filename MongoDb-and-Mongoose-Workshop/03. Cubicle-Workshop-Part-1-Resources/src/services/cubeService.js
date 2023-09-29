@@ -1,4 +1,4 @@
-const Cube = require("./../models/Cube");
+const Cube = require('./../models/Cube');
 const cubes = [];
 
 exports.create = async (cubeData) => {
@@ -12,29 +12,32 @@ exports.create = async (cubeData) => {
 exports.getAll = async (search, from, to) => {
   let filterCubes = await Cube.find().lean();
 
-  // TODO: this will be filtered later with mongoose
+  const conditions = [];
+
   if (search) {
-    filterCubes = filterCubes.filter((cube) =>
-      cube.name.toLowerCase().includes(search.toLowerCase())
-    );
+    conditions.push({
+      name: {
+        $regex: search,
+        $options: 'i',
+      },
+    });
   }
 
   if (from) {
-    filterCubes = filterCubes.filter(
-      (cube) => cube.difficultyLevel >= Number(from)
-    );
+    conditions.push({ difficultyLevel: { $gte: Number(from) } });
   }
 
   if (to) {
-    filterCubes = filterCubes.filter(
-      (cube) => cube.difficultyLevel <= Number(to)
-    );
+    conditions.push({ difficultyLevel: { $lte: Number(to) } });
   }
+  const finalSearch = conditions.length ? { $and: conditions } : {};
+
+  filterCubes = await Cube.find(finalSearch).lean();
 
   return filterCubes;
 };
 
-exports.getSingleCube = (id) => Cube.findById(id).populate("accessories");
+exports.getSingleCube = (id) => Cube.findById(id).populate('accessories');
 
 exports.attachAccessory = async (cubeId, accessoryId) => {
   // return Cube.findByIdAndUpdate(cubeId, {
