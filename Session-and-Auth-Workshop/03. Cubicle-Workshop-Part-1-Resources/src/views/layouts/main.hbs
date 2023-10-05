@@ -3,15 +3,26 @@
   <head>
     <meta charset="UTF-8" />
     <title>Cubicle</title>
-    <link href="/css/site.css" type="text/css" rel="stylesheet" />
-    <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.png" />
+    <link
+      href="/css/site.css"
+      type="text/css"
+      rel="stylesheet"
+    />
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="/images/favicon.png"
+    />
   </head>
 
   <body>
     <div class="container">
       <header>
         <ul>
-          <li><img class="logo" src="/images/logo.png" /></li>
+          <li><img
+              class="logo"
+              src="/images/logo.png"
+            /></li>
           <li><a href="/">Browse</a></li>
           <li><a href="/about">About</a></li>
 
@@ -19,7 +30,9 @@
             <li><a href="/cubes/create">Add a Cube</a></li>
             <li><a href="/accessories/create">Add Accessory</a></li>
             <li><a href="/users/logout">Logout</a></li>
-            <li>Welcome, {{user.username}}!</li>
+            <li
+              style="position: absolute;right: 20px;top:45px;color:white; font-weight:bold"
+            >Welcome, {{user.username}}!</li>
           {{else}}
             <li><a href="/users/login">Login</a></li>
             <li><a href="/users/register">Register</a></li>
