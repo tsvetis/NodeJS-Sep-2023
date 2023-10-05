@@ -80,4 +80,10 @@ router.get("/:cubeId/delete", async (req, res) => {
   res.render("cube/delete", { cube, options });
 });
 
+router.post("/:cubeId/delete", async (req, res) => {
+  await cubeService.delete(req.params.cubeId);
+
+  res.redirect("/");
+});
+
 module.exports = router;
