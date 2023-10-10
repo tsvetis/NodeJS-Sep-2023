@@ -28,6 +28,12 @@
         </ul>
       </header>
 
+      {{#each errorMessages}}
+        <div id="notifications">
+          <p id="notification-message">{{this}}</p>
+        </div>
+      {{/each}}
+
       {{{body}}}
     </div>
 
