@@ -1,0 +1,29 @@
+<main>
+  <h1>{{cube.name}}</h1>
+  <img class="cube" src="{{cube.imageUrl}}" />
+  <div class="details">
+    <p><span>Description:</span> {{cube.description}}</p>
+    <p><span>Difficulty level:</span> {{cube.difficultyLevel}}</p>
+    <a class="btn" href="/">Back</a>
+    <a class="btn" href="/cubes/{{cube._id}}/attach-accessory">Attach Accessory</a>
+    {{#if isOwner}}
+      <a class="btn" href="/cubes/{{cube._id}}/delete">Delete</a>
+      <a class="btn" href="/cubes/{{cube._id}}/edit">Edit</a>
+    {{/if}}
+  </div>
+
+  <h2>Accessories</h2>
+  <div class="accessories">
+    {{#if hasAccessories}}
+      {{#each cube.accessories}}
+        <div class="accessory">
+          <img src="{{imageUrl}}" alt="stickerName" />
+          <h3>{{name}}</h3>
+          <p>{{description}}</p>
+        </div>
+      {{/each}}
+    {{else}}
+      <h3 class="italic">This cube has no accessories yet...</h3>
+    {{/if}}
+  </div>
+</main>
