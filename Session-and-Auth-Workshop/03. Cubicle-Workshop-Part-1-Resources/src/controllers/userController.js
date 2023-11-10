@@ -5,12 +5,21 @@ router.get("/register", (req, res) => {
   res.render("user/register");
 });
 
-router.post("/register", async (req, res) => {
+router.post("/register", async (req, res, next) => {
   const { username, password, repeatPassword } = req.body;
 
-  await userService.register({ username, password, repeatPassword });
+  if (password !== repeatPassword) {
+    const error = new Error("Passwords do not match!");
+    error.statusCode = 400;
+    return next(error);
+}
 
-  res.redirect("/users/login");
+  try {
+    await userService.register({username, password, repeatPassword});
+    res.redirect("/users/login");
+  } catch(error){
+    next(error);
+  }
 });
 
 router.get("/login", (req, res) => {
